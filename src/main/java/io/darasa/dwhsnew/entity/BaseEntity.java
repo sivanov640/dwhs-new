@@ -1,6 +1,5 @@
 package io.darasa.dwhsnew.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -11,9 +10,9 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Data
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
 @EqualsAndHashCode(exclude = "id")
 public class BaseEntity {
 
@@ -22,22 +21,23 @@ public class BaseEntity {
     private UUID id = UUID.randomUUID();
 
     @Indexed
+    @Column("table_id")
+    private UUID tableId;
+
+    @Indexed
     @Column("deleted")
     private boolean deleted;
 
     @Indexed
     @Column("created_by")
-    @JsonProperty("created_by")
     private String createdBy;
 
     @Indexed
     @Builder.Default
     @Column("created_at")
-    @JsonProperty("created_at")
     private Instant createdAt = Instant.now();
 
     @Builder.Default
     @Column("updated_at")
-    @JsonProperty("updated_at")
     private Instant updatedAt = Instant.now();
 }

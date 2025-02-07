@@ -1,35 +1,32 @@
 package io.darasa.dwhsnew.controller;
 
-import io.darasa.dwhsnew.dto.request.CreateRoundDto;
+import io.darasa.dwhsnew.dto.request.RoundDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
-import io.darasa.dwhsnew.dto.response.RoundDto;
 import io.darasa.dwhsnew.service.RoundService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("round")
+@Tag(name = "Round Controller")
 public class RoundController {
 
     private final RoundService roundService;
 
     @GetMapping
+    @Operation(summary = "Get all rounds")
     public PageResponse<RoundDto> getRounds(@RequestParam(defaultValue = "1") int page,
                                             @RequestParam(defaultValue = "10") int size) {
         return roundService.getAll(page, size);
     }
 
     @PostMapping
-    public String createRound(@RequestBody CreateRoundDto dto) {
-        return roundService.create(dto);
-    }
-
-    @DeleteMapping
-    public String deleteRound(@RequestParam UUID id) {
-        return roundService.delete(id);
+    @Operation(summary = "Save round")
+    public String saveRound(@RequestBody RoundDto dto) {
+        return roundService.save(dto);
     }
 
 }

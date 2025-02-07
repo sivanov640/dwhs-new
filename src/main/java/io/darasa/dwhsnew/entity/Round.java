@@ -1,6 +1,5 @@
 package io.darasa.dwhsnew.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,12 +23,13 @@ public class Round extends BaseEntity {
 
     @Indexed
     @Column("start_time")
-    @JsonProperty("start_time")
     private Instant startTime;
 
     @Indexed
     @Column("end_time")
-    @JsonProperty("end_time")
     private Instant endTime;
+
+    @Column("round_step")
+    private Instant round_step;
 }
 

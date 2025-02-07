@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -21,12 +19,5 @@ public class PageResponse<T> {
     private boolean hasNext = false;
     @Builder.Default
     private int size = 0;
-
-    public PageResponse<T> mapRecords(Function<T, T> mapper) {
-        this.records = this.records.stream()
-                .map(mapper)
-                .collect(Collectors.toList());
-        return this;
-    }
 
 }
