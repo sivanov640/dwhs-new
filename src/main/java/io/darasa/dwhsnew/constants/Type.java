@@ -22,7 +22,7 @@ public enum Type {
     TRANSACTION(Transaction.class, TransactionDto.class),
     TICKET(Ticket.class, TicketDto.class);
 
-    private final Class<? extends BaseEntity> entityClass;
+    private final Class<? extends BaseEntity<?>> entityClass;
 
     private final Class<? extends BaseDto> dtoClass;
 

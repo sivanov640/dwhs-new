@@ -1,44 +1,30 @@
 package io.darasa.dwhsnew.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.darasa.dwhsnew.constants.TicketStatus;
-import io.darasa.dwhsnew.constants.TxAction;
-import io.darasa.dwhsnew.constants.TxOption;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class TransactionDto extends BaseDto {
 
-    @JsonProperty("member_id")
-    private long memberId;
+    @JsonProperty("game_id")
+    private String gameId;
 
     @JsonProperty("ticket_id")
     private String ticketId;
 
-    @JsonProperty("amount")
-    private double amount;
+    @JsonProperty("agency_id")
+    private String agencyId;
 
-    @JsonProperty("action")
-    private TxAction action;
+    @JsonProperty("member_id")
+    private String memberId;
 
-    @JsonProperty("option")
-    private TxOption option;
+    @JsonProperty("request_json")
+    private String requestJson;
 
-    @JsonProperty("ticket_status")
-    private TicketStatus ticketStatus;
+    @JsonProperty("response_json")
+    private String responseJson;
 
-    @JsonProperty("error_code")
-    private int errorCode;
-
-    @JsonProperty("payload")
-    private String payload;
-
-    @JsonProperty("response")
-    private String response;
-
-    @JsonProperty("note")
-    private String note;
 }
 

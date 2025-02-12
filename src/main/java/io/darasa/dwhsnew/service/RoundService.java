@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class RoundService extends BaseService<Round, RoundDto> {
+public class RoundService extends BaseService<Round, String, RoundDto> {
 
     public RoundService() {
         super(Type.ROUND);

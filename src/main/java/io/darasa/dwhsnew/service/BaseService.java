@@ -7,30 +7,30 @@ import io.darasa.dwhsnew.entity.BaseEntity;
 import io.darasa.dwhsnew.exception.CassandraException;
 import io.darasa.dwhsnew.exception.InvalidRequestException;
 import io.darasa.dwhsnew.mapper.BaseMapper;
-import io.darasa.dwhsnew.repository.BaseEntityRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.cassandra.core.query.CassandraPageRequest;
+import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public abstract class BaseService<T extends BaseEntity, U extends BaseDto> {
+public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends BaseDto> {
 
     @Getter
     private final Type type;
 
     @Autowired
-    private BaseEntityRepository<T> baseEntityRepository;
+    private CassandraRepository<T, TID> baseEntityRepository;
 
     @Autowired
     private BaseMapper<T, U> baseMapper;
 
-    public String save(U dto) {
+    public String save(BaseDto dto) {
         try {
             T entity = baseEntityRepository.save(convertDtoToEntity(dto));
             if (baseEntityRepository.existsById(entity.getId())) {
@@ -68,10 +68,10 @@ public abstract class BaseService<T extends BaseEntity, U extends BaseDto> {
         }
     }
 
-    private T convertDtoToEntity(U dto) {
+    private T convertDtoToEntity(BaseDto dto) {
         T entity;
         try {
-            entity = baseMapper.toEntity(dto);
+            entity = baseMapper.toEntity((U) dto);
         } catch (Exception e) {
             throw new InvalidRequestException("Can't convert dto to entity");
         }

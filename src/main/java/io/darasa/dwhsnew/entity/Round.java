@@ -17,7 +17,18 @@ import java.time.Instant;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table("round")
-public class Round extends BaseEntity {
+public class Round extends BaseEntity<String> {
+
+    @Column("table_id")
+    private String tableId;
+
+    @Indexed
+    @Column("game_id")
+    private String gameId;
+
+    @Column("game_name")
+    private String gameName;
+
     @Column("result")
     private String result;
 
@@ -29,7 +40,5 @@ public class Round extends BaseEntity {
     @Column("end_time")
     private Instant endTime;
 
-    @Column("round_step")
-    private Instant round_step;
 }
 

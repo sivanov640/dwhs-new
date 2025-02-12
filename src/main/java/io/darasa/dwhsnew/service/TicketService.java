@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class TicketService extends BaseService<Ticket, TicketDto> {
+public class TicketService extends BaseService<Ticket, String, TicketDto> {
 
     public TicketService() {
         super(Type.TICKET);

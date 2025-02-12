@@ -9,32 +9,40 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
+
+    public static final String RECORDS_EXCHANGE = "records-exchange";
+    public static final String RECORDS_QUEUE = "records-queue";
+    public static final String RECORDS_ROUTING_KEY = "records";
+    public static final String DLX_EXCHANGE = "dlx-exchange";
+    public static final String DLQ_QUEUE = "dlq-queue";
+
     @Bean
     public Queue recordsQueue() {
-        return QueueBuilder.durable("records-queue")
-                .deadLetterExchange("dlx-exchange")
+        return QueueBuilder.durable(RECORDS_QUEUE)
+                .deadLetterExchange(DLX_EXCHANGE)
                 .build();
     }
 
     @Bean
-    public FanoutExchange recordsExchange() {
-        return new FanoutExchange("records-exchange");
+    public DirectExchange recordsExchange() {
+        return new DirectExchange(RECORDS_EXCHANGE);
     }
 
     @Bean
     public Binding recordsBinding() {
         return BindingBuilder.bind(recordsQueue())
-                .to(recordsExchange());
+                .to(recordsExchange())
+                .with(RECORDS_ROUTING_KEY);
     }
 
     @Bean
     public Queue deadLetterQueue() {
-        return QueueBuilder.durable("dlq-queue").build();
+        return QueueBuilder.durable(DLQ_QUEUE).build();
     }
 
     @Bean
     public FanoutExchange deadLetterExchange() {
-        return new FanoutExchange("dlx-exchange");
+        return new FanoutExchange(DLX_EXCHANGE);
     }
 
     @Bean
