@@ -1,20 +1,19 @@
 server:
   servlet:
     context-path: /dwhs
+  port: 4000
 spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username:
+    password:
   cassandra:
     contact-points: localhost
     port: 9042
     keyspace-name: dwhs_keyspace
     local-datacenter: datacenter1
     schema-action: create_if_not_exists
-    username: cassandra
-    password: cassandra
     request:
       timeout: 5s
     connection:
