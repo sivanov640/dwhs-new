@@ -1,5 +1,6 @@
 package io.darasa.dwhsnew.controller;
 
+import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.dto.request.TicketDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
 import io.darasa.dwhsnew.service.TicketService;
@@ -17,10 +18,12 @@ public class TicketController {
     private final TicketService ticketService;
 
     @GetMapping
-    @Operation(summary = "Get all tickets")
-    public PageResponse<TicketDto> getTickets(@RequestParam(defaultValue = "1") int page,
-                                              @RequestParam(defaultValue = "10") int size) {
-        return ticketService.getAll(page, size);
+    @Operation(summary = "Get tickets")
+    public PageResponse<TicketDto> getTickets(@RequestParam(defaultValue = "1", required = false) int page,
+                                              @RequestParam(defaultValue = "10", required = false) int size,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.TICKET_ID) String ticketId,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.ROUND_ID) String roundId) {
+        return ticketService.getAll(page, size, ticketId, roundId);
     }
 
     @PostMapping

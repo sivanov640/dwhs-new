@@ -1,6 +1,7 @@
 package io.darasa.dwhsnew.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,22 +9,17 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class TransactionDto extends BaseDto {
 
-    @JsonProperty("game_id")
+    @JsonProperty(ColumnName.Transaction.GAME_ID)
     private String gameId;
-
-    @JsonProperty("ticket_id")
+    @JsonProperty(ColumnName.Transaction.TICKET_ID)
     private String ticketId;
-
-    @JsonProperty("agency_id")
+    @JsonProperty(ColumnName.Transaction.AGENCY_ID)
     private String agencyId;
-
-    @JsonProperty("member_id")
+    @JsonProperty(ColumnName.Transaction.MEMBER_ID)
     private String memberId;
-
-    @JsonProperty("request_json")
+    @JsonProperty(ColumnName.Transaction.REQUEST_JSON)
     private String requestJson;
-
-    @JsonProperty("response_json")
+    @JsonProperty(ColumnName.Transaction.RESPONSE_JSON)
     private String responseJson;
 
 }

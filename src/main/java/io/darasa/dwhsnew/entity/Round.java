@@ -1,5 +1,6 @@
 package io.darasa.dwhsnew.entity;
 
+import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,25 +20,29 @@ import java.time.Instant;
 @Table("round")
 public class Round extends BaseEntity<String> {
 
-    @Column("table_id")
+    @Indexed
+    @Column(ColumnName.Round.ROUND_ID)
+    private String roundId;
+
+    @Column(ColumnName.Round.TABLE_ID)
     private String tableId;
 
     @Indexed
-    @Column("game_id")
+    @Column(ColumnName.Round.GAME_ID)
     private String gameId;
 
-    @Column("game_name")
+    @Column(ColumnName.Round.GAME_NAME)
     private String gameName;
 
-    @Column("result")
+    @Column(ColumnName.Round.RESULT)
     private String result;
 
     @Indexed
-    @Column("start_time")
+    @Column(ColumnName.Round.START_TIME)
     private Instant startTime;
 
     @Indexed
-    @Column("end_time")
+    @Column(ColumnName.Round.END_TIME)
     private Instant endTime;
 
 }

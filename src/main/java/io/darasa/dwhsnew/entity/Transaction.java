@@ -1,5 +1,6 @@
 package io.darasa.dwhsnew.entity;
 
+import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,10 +17,11 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table("transaction")
 public class Transaction extends BaseEntity<TransactionPrimaryKey> {
 
-    @Column("request_json")
+    @Column(ColumnName.Transaction.REQUEST_JSON)
     private String requestJson;
 
-    @Column("response_json")
+    @Column(ColumnName.Transaction.RESPONSE_JSON)
     private String responseJson;
+
 }
 

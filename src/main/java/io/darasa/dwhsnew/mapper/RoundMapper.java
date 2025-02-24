@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoundMapper extends BaseMapper<Round, RoundDto> {
 
-    @Mapping(target = "id", source = "id", defaultExpression = "java(java.util.UUID.randomUUID().toString())")
+    @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID().toString())")
     Round toEntity(RoundDto dto);
 
 }

@@ -11,10 +11,17 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.query.CassandraPageRequest;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import org.springframework.data.cassandra.core.query.Criteria;
+import org.springframework.data.cassandra.core.query.CriteriaDefinition;
+import org.springframework.data.cassandra.core.query.Query;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -22,18 +29,18 @@ import org.springframework.stereotype.Service;
 public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends BaseDto> {
 
     @Getter
-    private final Type type;
+    protected final Type type;
 
     @Autowired
-    private CassandraRepository<T, TID> baseEntityRepository;
+    protected CassandraTemplate cassandraTemplate;
 
     @Autowired
-    private BaseMapper<T, U> baseMapper;
+    protected BaseMapper<T, U> baseMapper;
 
     public String save(BaseDto dto) {
         try {
-            T entity = baseEntityRepository.save(convertDtoToEntity(dto));
-            if (baseEntityRepository.existsById(entity.getId())) {
+            T entity = cassandraTemplate.insert(convertDtoToEntity(dto));
+            if (cassandraTemplate.exists(entity.getId(), type.getEntityClass())) {
                 return type.getEntityClass().getSimpleName() + " " + entity.getId() + " saved successfully";
             } else {
                 throw new CassandraException(type.getEntityClass());
@@ -45,15 +52,22 @@ public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends Base
         }
     }
 
-    public PageResponse<U> getAll(int page, int size) {
+    public PageResponse<U> getAll(int page, int size, List<CriteriaDefinition> criteriaDefinitions) {
         if (page < 1) {
             throw new InvalidRequestException("Page must be greater than 0");
         } else if (size < 1) {
             throw new InvalidRequestException("Size must be greater than 0");
         }
-        Slice<T> slice = baseEntityRepository.findAll(CassandraPageRequest.first(size));
+        if (criteriaDefinitions == null) {
+            criteriaDefinitions = new ArrayList<>();
+        }
+        Slice<T> slice = (Slice<T>) cassandraTemplate.slice(Query.query(criteriaDefinitions).pageRequest(CassandraPageRequest.first(size)).withAllowFiltering(), type.getEntityClass());
+
         while (slice.hasNext() && page > 1) {
-            slice = baseEntityRepository.findAll(slice.nextPageable());
+            slice = (Slice<T>) cassandraTemplate.slice(
+                    Query.query(criteriaDefinitions).pageRequest(slice.nextPageable()),
+                    type.getEntityClass()
+            );
             page--;
         }
         if (page == 1) {
@@ -76,5 +90,38 @@ public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends Base
             throw new InvalidRequestException("Can't convert dto to entity");
         }
         return entity;
+    }
+
+    protected static void addCriteriaDefinitionsForDateTime(String column, String roundStartTime, List<CriteriaDefinition> criteriaDefinitions) {
+        if (!roundStartTime.contains("_")) {
+            Instant realRoundStartTime;
+            try {
+                realRoundStartTime = Instant.parse(roundStartTime);
+            } catch (Exception e) {
+                throw new InvalidRequestException("Can't parse " + column);
+            }
+            criteriaDefinitions.add(Criteria.where(column).is(realRoundStartTime));
+        } else {
+            var roundStartTimes = roundStartTime.split("_");
+            if (roundStartTimes.length != 2) {
+                throw new InvalidRequestException("Can't split " + column + " interval into 2 parts");
+            }
+            List<Instant> realRoundStartTimes = new ArrayList<>();
+            try {
+                realRoundStartTimes.add(Instant.parse(roundStartTimes[0]));
+                realRoundStartTimes.add(Instant.parse(roundStartTimes[1]));
+            } catch (Exception e) {
+                throw new InvalidRequestException("Can't parse " + column + " interval");
+            }
+            Instant fromDate = realRoundStartTimes.getFirst();
+            Instant toDate = realRoundStartTimes.getLast();
+            if (fromDate.isAfter(toDate)) {
+                var temp = fromDate;
+                fromDate = toDate;
+                toDate = temp;
+            }
+            criteriaDefinitions.add(Criteria.where(column).gte(fromDate));
+            criteriaDefinitions.add(Criteria.where(column).lte(toDate));
+        }
     }
 }
