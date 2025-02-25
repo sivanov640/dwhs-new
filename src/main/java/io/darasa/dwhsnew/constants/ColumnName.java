@@ -24,16 +24,12 @@ public class ColumnName {
         public static final String GAME_NAME = "game_name";
         public static final String AGENCY_ID = "agency_id";
         public static final String ROUND_ID = "round_id";
-        public static final String TRANSACTION_ID = "transactionId";
+        public static final String TRANSACTION_ID = "transaction_id";
         public static final String ACTION = "action";
-        public static final String AGENCY_CODE = "agency_code";
         public static final String BET_AMOUNT = "bet_amount";
         public static final String MEMBER_ID = "member_id";
-        public static final String MEMBER_UID = "member_uid";
         public static final String PAYMENT_STATUS = "payment_status";
         public static final String BET_OPTION = "bet_option";
-        public static final String BRAND = "brand";
-        public static final String FULL_NAME = "full_name";
         public static final String DISPLAY_NAME = "display_name";
         public static final String CURRENCY = "currency";
         public static final String TYPE = "type";

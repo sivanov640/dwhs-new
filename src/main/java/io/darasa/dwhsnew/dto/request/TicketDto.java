@@ -25,22 +25,14 @@ public class TicketDto extends CreatedUpdatedDto {
     private String transactionId;
     @JsonProperty(ColumnName.Ticket.ACTION)
     private String action;
-    @JsonProperty(ColumnName.Ticket.AGENCY_CODE)
-    private String agencyCode;
     @JsonProperty(ColumnName.Ticket.BET_AMOUNT)
     private double betAmount;
     @JsonProperty(ColumnName.Ticket.MEMBER_ID)
     private Long memberId;
-    @JsonProperty(ColumnName.Ticket.MEMBER_UID)
-    private String memberUid;
     @JsonProperty(ColumnName.Ticket.PAYMENT_STATUS)
     private String paymentStatus;
     @JsonProperty(ColumnName.Ticket.BET_OPTION)
     private String betOption;
-    @JsonProperty(ColumnName.Ticket.BRAND)
-    private String brand;
-    @JsonProperty(ColumnName.Ticket.FULL_NAME)
-    private String fullName;
     @JsonProperty(ColumnName.Ticket.DISPLAY_NAME)
     private String displayName;
     @JsonProperty(ColumnName.Ticket.CURRENCY)

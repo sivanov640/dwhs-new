@@ -40,29 +40,17 @@ public class Ticket extends CreatedUpdatedEntity<TicketPrimaryKey> {
     @Column(ColumnName.Ticket.ACTION)
     private String action;
 
-    @Column(ColumnName.Ticket.AGENCY_CODE)
-    private String agencyCode;
-
     @Column(ColumnName.Ticket.BET_AMOUNT)
     private double betAmount;
 
     @Column(ColumnName.Ticket.MEMBER_ID)
     private Long memberId;
 
-    @Column(ColumnName.Ticket.MEMBER_UID)
-    private String memberUid;
-
     @Column(ColumnName.Ticket.PAYMENT_STATUS)
     private String paymentStatus;
 
     @Column(ColumnName.Ticket.BET_OPTION)
     private String betOption;
-
-    @Column(ColumnName.Ticket.BRAND)
-    private String brand;
-
-    @Column(ColumnName.Ticket.FULL_NAME)
-    private String fullName;
 
     @Column(ColumnName.Ticket.DISPLAY_NAME)
     private String displayName;
