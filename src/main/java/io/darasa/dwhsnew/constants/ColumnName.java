@@ -52,7 +52,7 @@ public class ColumnName {
         public static final String RESPONSE_JSON = "response_json";
     }
 
-    public static class Unknown {
+    public static class Dropped {
         public static final String DATA = "data";
     }
 }

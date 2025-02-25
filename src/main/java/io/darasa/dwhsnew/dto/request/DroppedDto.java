@@ -9,13 +9,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class UnknownDto extends BaseDto {
+public class DroppedDto extends BaseDto {
 
     @JsonProperty(ColumnName.Round.RESULT)
     private String data;
 
-    public static UnknownDto of(String data) {
-        return new UnknownDto(data);
+    public static DroppedDto of(String data) {
+        return new DroppedDto(data);
     }
 
 }

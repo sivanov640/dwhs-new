@@ -1,6 +1,6 @@
 package io.darasa.dwhsnew.controller;
 
-import io.darasa.dwhsnew.service.UnknownService;
+import io.darasa.dwhsnew.service.DroppedService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("unknown")
-@Tag(name = "Unknown Controller")
-public class UnknownController {
+@RequestMapping("dropped")
+@Tag(name = "Dropped Controller")
+public class DroppedController {
 
-    private final UnknownService unknownService;
+    private final DroppedService droppedService;
 
     @GetMapping("/count")
-    @Operation(summary = "Get count of unknowns")
-    public long getUnknownCount() {
-        return unknownService.getCount();
+    @Operation(summary = "Get count of dropped")
+    public long getDroppedCount() {
+        return droppedService.getCount();
     }
 
 }

@@ -14,10 +14,10 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table("unknown")
-public class Unknown extends BaseEntity<String> {
+@Table("dropped")
+public class Dropped extends BaseEntity<String> {
 
-    @Column(ColumnName.Unknown.DATA)
+    @Column(ColumnName.Dropped.DATA)
     private String data;
 
 }

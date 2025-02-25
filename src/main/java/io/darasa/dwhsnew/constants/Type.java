@@ -15,7 +15,7 @@ public enum Type {
     ROUND(Round.class, RoundDto.class),
     TRANSACTION(Transaction.class, TransactionDto.class),
     TICKET(Ticket.class, TicketDto.class),
-    UNKNOWN(Unknown.class, UnknownDto.class);
+    DROPPED(Dropped.class, DroppedDto.class);
 
     private final Class<? extends BaseEntity<?>> entityClass;
 
