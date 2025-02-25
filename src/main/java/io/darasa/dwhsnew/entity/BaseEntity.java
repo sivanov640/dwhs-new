@@ -11,9 +11,10 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
+@EqualsAndHashCode
 public class BaseEntity<T> {
 
     @PrimaryKey
     private T id;
+
 }

@@ -1,5 +1,6 @@
 package io.darasa.dwhsnew.entity;
 
+import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,73 +10,77 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.Indexed;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-import java.time.Instant;
-
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table("ticket")
-public class Ticket extends BaseEntity<String> {
+public class Ticket extends CreatedUpdatedEntity<TicketPrimaryKey> {
 
-    @Column("table_id")
+
+    @Column(ColumnName.Ticket.TABLE_ID)
     private String tableId;
 
-    @Indexed
-    @Column("game_id")
-    private String gameId;
-
-    @Column("game_name")
+    @Column(ColumnName.Ticket.GAME_NAME)
     private String gameName;
 
     @Indexed
-    @Column("agency_id")
+    @Column(ColumnName.Ticket.AGENCY_ID)
     private int agencyId;
 
     @Indexed
-    @Column("round_id")
+    @Column(ColumnName.Ticket.ROUND_ID)
     private String roundId;
 
     @Indexed
-    @Column("transactionId")
+    @Column(ColumnName.Ticket.TRANSACTION_ID)
     private String transactionId;
 
-    @Column("action")
+    @Column(ColumnName.Ticket.ACTION)
     private String action;
 
-    @Column("agency_code")
+    @Column(ColumnName.Ticket.AGENCY_CODE)
     private String agencyCode;
 
-    @Column("bet_amount")
+    @Column(ColumnName.Ticket.BET_AMOUNT)
     private double betAmount;
 
-    @Column("member_id")
-    private String memberId;
+    @Column(ColumnName.Ticket.MEMBER_ID)
+    private Long memberId;
 
-    @Column("payment_status")
+    @Column(ColumnName.Ticket.MEMBER_UID)
+    private String memberUid;
+
+    @Column(ColumnName.Ticket.PAYMENT_STATUS)
     private String paymentStatus;
 
-    @Column("round_start_time")
-    private Instant roundStartTime;
+    @Column(ColumnName.Ticket.BET_OPTION)
+    private String betOption;
 
-    @Column("round_end_time")
-    private Instant roundEndTime;
-
-    @Column("user_step")
-    private String userStep;
-
-    @Column("round_step")
-    private String roundStep;
-
-    @Column("brand")
+    @Column(ColumnName.Ticket.BRAND)
     private String brand;
 
-    @Column("full_name")
+    @Column(ColumnName.Ticket.FULL_NAME)
     private String fullName;
 
-    @Column("currency")
+    @Column(ColumnName.Ticket.DISPLAY_NAME)
+    private String displayName;
+
+    @Column(ColumnName.Ticket.CURRENCY)
     private String currency;
+
+    @Column(ColumnName.Ticket.TYPE)
+    private String type;
+
+    @Column(ColumnName.Ticket.WIN_AMOUNT)
+    private double winAmount;
+
+    @Column(ColumnName.Ticket.GAME_YOUR_BET)
+    private String gameYourBet;
+
+    @Column(ColumnName.Ticket.STATUS)
+    private String status;
 
 }
 

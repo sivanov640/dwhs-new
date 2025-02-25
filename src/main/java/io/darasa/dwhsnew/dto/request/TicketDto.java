@@ -1,53 +1,58 @@
 package io.darasa.dwhsnew.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.Instant;
-
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TicketDto extends BaseDto implements Identifiable {
+public class TicketDto extends CreatedUpdatedDto {
 
-    @JsonProperty
-    private String id;
-    @JsonProperty("table_id")
+    @JsonProperty(ColumnName.Ticket.TICKET_ID)
+    private String ticketId;
+    @JsonProperty(ColumnName.Ticket.TABLE_ID)
     private String tableId;
-    @JsonProperty("game_id")
+    @JsonProperty(ColumnName.Ticket.GAME_ID)
     private String gameId;
-    @JsonProperty("game_name")
+    @JsonProperty(ColumnName.Ticket.GAME_NAME)
     private String gameName;
-    @JsonProperty("agency_id")
+    @JsonProperty(ColumnName.Ticket.AGENCY_ID)
     private int agencyId;
-    @JsonProperty("round_id")
+    @JsonProperty(ColumnName.Ticket.ROUND_ID)
     private String roundId;
-    @JsonProperty("transactionId")
+    @JsonProperty(ColumnName.Ticket.TRANSACTION_ID)
     private String transactionId;
-    @JsonProperty("action")
+    @JsonProperty(ColumnName.Ticket.ACTION)
     private String action;
-    @JsonProperty("agency_code")
+    @JsonProperty(ColumnName.Ticket.AGENCY_CODE)
     private String agencyCode;
-    @JsonProperty("bet_amount")
+    @JsonProperty(ColumnName.Ticket.BET_AMOUNT)
     private double betAmount;
-    @JsonProperty("member_id")
-    private String memberId;
-    @JsonProperty("payment_status")
+    @JsonProperty(ColumnName.Ticket.MEMBER_ID)
+    private Long memberId;
+    @JsonProperty(ColumnName.Ticket.MEMBER_UID)
+    private String memberUid;
+    @JsonProperty(ColumnName.Ticket.PAYMENT_STATUS)
     private String paymentStatus;
-    @JsonProperty("round_start_time")
-    private Instant roundStartTime;
-    @JsonProperty("round_end_time")
-    private Instant roundEndTime;
-    @JsonProperty("user_step")
-    private String userStep;
-    @JsonProperty("round_step")
-    private String roundStep;
-    @JsonProperty("brand")
+    @JsonProperty(ColumnName.Ticket.BET_OPTION)
+    private String betOption;
+    @JsonProperty(ColumnName.Ticket.BRAND)
     private String brand;
-    @JsonProperty("full_name")
+    @JsonProperty(ColumnName.Ticket.FULL_NAME)
     private String fullName;
-    @JsonProperty("currency")
+    @JsonProperty(ColumnName.Ticket.DISPLAY_NAME)
+    private String displayName;
+    @JsonProperty(ColumnName.Ticket.CURRENCY)
     private String currency;
+    @JsonProperty(ColumnName.Ticket.TYPE)
+    private String type;
+    @JsonProperty(ColumnName.Ticket.WIN_AMOUNT)
+    private double winAmount;
+    @JsonProperty(ColumnName.Ticket.STATUS)
+    private String status;
+    @JsonProperty(ColumnName.Ticket.GAME_YOUR_BET)
+    private String gameYourBet;
 
 }
 

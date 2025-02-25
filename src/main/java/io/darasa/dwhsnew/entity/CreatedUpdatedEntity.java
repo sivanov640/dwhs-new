@@ -7,21 +7,19 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.time.Instant;
 
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table("transaction")
-public class Transaction extends CreatedUpdatedEntity<TransactionPrimaryKey> {
+public class CreatedUpdatedEntity<T> extends BaseEntity<T> {
 
-    @Column(ColumnName.Transaction.REQUEST_JSON)
-    private String requestJson;
+    @Column(ColumnName.Base.CREATED_AT)
+    private Instant createdAt;
 
-    @Column(ColumnName.Transaction.RESPONSE_JSON)
-    private String responseJson;
-
+    @Column(ColumnName.Base.UPDATED_AT)
+    private Instant updatedAt;
 }
-

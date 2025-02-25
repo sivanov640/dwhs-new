@@ -14,14 +14,11 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table("transaction")
-public class Transaction extends CreatedUpdatedEntity<TransactionPrimaryKey> {
+@Table("unknown")
+public class Unknown extends BaseEntity<String> {
 
-    @Column(ColumnName.Transaction.REQUEST_JSON)
-    private String requestJson;
-
-    @Column(ColumnName.Transaction.RESPONSE_JSON)
-    private String responseJson;
+    @Column(ColumnName.Unknown.DATA)
+    private String data;
 
 }
 

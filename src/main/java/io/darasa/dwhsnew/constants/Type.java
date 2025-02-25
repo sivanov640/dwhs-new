@@ -1,13 +1,7 @@
 package io.darasa.dwhsnew.constants;
 
-import io.darasa.dwhsnew.dto.request.BaseDto;
-import io.darasa.dwhsnew.dto.request.RoundDto;
-import io.darasa.dwhsnew.dto.request.TicketDto;
-import io.darasa.dwhsnew.dto.request.TransactionDto;
-import io.darasa.dwhsnew.entity.BaseEntity;
-import io.darasa.dwhsnew.entity.Round;
-import io.darasa.dwhsnew.entity.Ticket;
-import io.darasa.dwhsnew.entity.Transaction;
+import io.darasa.dwhsnew.dto.request.*;
+import io.darasa.dwhsnew.entity.*;
 import io.darasa.dwhsnew.exception.InvalidRequestException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +14,8 @@ public enum Type {
 
     ROUND(Round.class, RoundDto.class),
     TRANSACTION(Transaction.class, TransactionDto.class),
-    TICKET(Ticket.class, TicketDto.class);
+    TICKET(Ticket.class, TicketDto.class),
+    UNKNOWN(Unknown.class, UnknownDto.class);
 
     private final Class<? extends BaseEntity<?>> entityClass;
 
