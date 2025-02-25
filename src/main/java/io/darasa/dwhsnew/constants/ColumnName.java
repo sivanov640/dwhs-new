@@ -51,4 +51,8 @@ public class ColumnName {
         public static final String REQUEST_JSON = "request_json";
         public static final String RESPONSE_JSON = "response_json";
     }
+
+    public static class Unknown {
+        public static final String DATA = "data";
+    }
 }

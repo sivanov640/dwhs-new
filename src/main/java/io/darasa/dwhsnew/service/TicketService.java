@@ -5,6 +5,7 @@ import io.darasa.dwhsnew.constants.Type;
 import io.darasa.dwhsnew.dto.request.TicketDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
 import io.darasa.dwhsnew.entity.Ticket;
+import io.darasa.dwhsnew.entity.TicketPrimaryKey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.cassandra.core.query.Criteria;
 import org.springframework.data.cassandra.core.query.CriteriaDefinition;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class TicketService extends BaseService<Ticket, String, TicketDto> {
+public class TicketService extends BaseService<Ticket, TicketPrimaryKey, TicketDto> {
 
     public TicketService() {
         super(Type.TICKET);
@@ -32,6 +33,5 @@ public class TicketService extends BaseService<Ticket, String, TicketDto> {
 
         return getAll(page, size, criteriaDefinitions);
     }
-
 
 }

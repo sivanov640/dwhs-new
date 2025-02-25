@@ -37,12 +37,10 @@ public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends Base
     @Autowired
     protected BaseMapper<T, U> baseMapper;
 
-    public String save(BaseDto dto) {
+    public void save(BaseDto dto) {
         try {
             T entity = cassandraTemplate.insert(convertDtoToEntity(dto));
-            if (cassandraTemplate.exists(entity.getId(), type.getEntityClass())) {
-                return type.getEntityClass().getSimpleName() + " " + entity.getId() + " saved successfully";
-            } else {
+            if (!cassandraTemplate.exists(entity.getId(), type.getEntityClass())) {
                 throw new CassandraException(type.getEntityClass());
             }
         } catch (InvalidRequestException e) {
@@ -83,13 +81,11 @@ public abstract class BaseService<T extends BaseEntity<TID>, TID, U extends Base
     }
 
     private T convertDtoToEntity(BaseDto dto) {
-        T entity;
         try {
-            entity = baseMapper.toEntity((U) dto);
+            return baseMapper.toEntity((U) dto);
         } catch (Exception e) {
             throw new InvalidRequestException("Can't convert dto to entity");
         }
-        return entity;
     }
 
     protected static void addCriteriaDefinitionsForDateTime(String column, String roundStartTime, List<CriteriaDefinition> criteriaDefinitions) {

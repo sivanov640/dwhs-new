@@ -18,18 +18,10 @@ import java.time.Instant;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table("round")
-public class Round extends BaseEntity<String> {
-
-    @Indexed
-    @Column(ColumnName.Round.ROUND_ID)
-    private String roundId;
+public class Round extends CreatedUpdatedEntity<RoundPrimaryKey> {
 
     @Column(ColumnName.Round.TABLE_ID)
     private String tableId;
-
-    @Indexed
-    @Column(ColumnName.Round.GAME_ID)
-    private String gameId;
 
     @Column(ColumnName.Round.GAME_NAME)
     private String gameName;

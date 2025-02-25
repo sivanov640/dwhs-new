@@ -16,18 +16,11 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table("ticket")
-public class Ticket extends BaseEntity<String> {
+public class Ticket extends CreatedUpdatedEntity<TicketPrimaryKey> {
 
-    @Indexed
-    @Column(ColumnName.Ticket.TICKET_ID)
-    private String ticketId;
 
     @Column(ColumnName.Ticket.TABLE_ID)
     private String tableId;
-
-    @Indexed
-    @Column(ColumnName.Ticket.GAME_ID)
-    private String gameId;
 
     @Column(ColumnName.Ticket.GAME_NAME)
     private String gameName;

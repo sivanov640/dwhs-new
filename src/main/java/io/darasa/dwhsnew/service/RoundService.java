@@ -5,6 +5,7 @@ import io.darasa.dwhsnew.constants.Type;
 import io.darasa.dwhsnew.dto.request.RoundDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
 import io.darasa.dwhsnew.entity.Round;
+import io.darasa.dwhsnew.entity.RoundPrimaryKey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.cassandra.core.query.Criteria;
 import org.springframework.data.cassandra.core.query.CriteriaDefinition;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class RoundService extends BaseService<Round, String, RoundDto> {
+public class RoundService extends BaseService<Round, RoundPrimaryKey, RoundDto> {
 
     public RoundService() {
         super(Type.ROUND);
@@ -35,4 +36,5 @@ public class RoundService extends BaseService<Round, String, RoundDto> {
 
         return getAll(page, size, criteriaDefinitions);
     }
+
 }

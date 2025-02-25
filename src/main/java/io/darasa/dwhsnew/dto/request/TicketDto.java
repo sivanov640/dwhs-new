@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TicketDto extends BaseDto {
+public class TicketDto extends CreatedUpdatedDto {
 
     @JsonProperty(ColumnName.Ticket.TICKET_ID)
     private String ticketId;

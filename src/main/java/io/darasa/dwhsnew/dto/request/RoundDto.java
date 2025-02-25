@@ -9,7 +9,7 @@ import java.time.Instant;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class RoundDto extends BaseDto {
+public class RoundDto extends CreatedUpdatedDto {
     @JsonProperty(ColumnName.Round.ROUND_ID)
     private String roundId;
     @JsonProperty(ColumnName.Round.TABLE_ID)

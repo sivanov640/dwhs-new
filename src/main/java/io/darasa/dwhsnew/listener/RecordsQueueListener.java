@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static io.darasa.dwhsnew.configuration.RabbitMQConfig.RECORDS_QUEUE;
+
 @Component
 @RequiredArgsConstructor
 public class RecordsQueueListener {
@@ -22,10 +24,9 @@ public class RecordsQueueListener {
 
     private final Map<String, BaseService<?, ?, ? extends BaseDto>> serviceMap;
 
-    @RabbitListener(queues = "records-queue")
+    @RabbitListener(queues = RECORDS_QUEUE)
     public void listen(@Payload String message, @Header String type) {
         Type requiredType = Type.getType(type);
-
         serviceMap.values().stream()
                 .filter(service -> service.getType().equals(requiredType))
                 .limit(1)
