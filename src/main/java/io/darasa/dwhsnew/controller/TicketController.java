@@ -28,7 +28,12 @@ public class TicketController {
                                               @RequestParam(required = false, value = ColumnName.Ticket.ROUND_ID) String roundId,
                                               @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_ID) Integer agencyId,
                                               @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_CODE) String agencyCode,
-                                              @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_CODE2) String agencyCode2) {
-        return ticketService.getAll(page, size, ticketId, roundId, agencyId, agencyCode, agencyCode2);
+                                              @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_CODE2) String agencyCode2,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.UID) String uid,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.UUID) String uuid,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.USERNAME) String username,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.USER_ID) String userId
+    ) {
+        return ticketService.getAll(page, size, ticketId, roundId, agencyId, agencyCode, agencyCode2, uid, uuid, username, userId);
     }
 }

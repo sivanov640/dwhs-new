@@ -38,6 +38,10 @@ public class ColumnName {
         public static final String STATUS = "status";
         public static final String AGENCY_CODE = "agency_code";
         public static final String AGENCY_CODE2 = "agency_code2";
+        public static final String UID = "uid";
+        public static final String UUID = "uuid";
+        public static final String USERNAME = "username";
+        public static final String USER_ID = "user_id";
     }
 
     public static class Transaction {

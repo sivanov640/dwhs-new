@@ -78,5 +78,17 @@ public class Ticket extends CreatedUpdatedEntity<TicketPrimaryKey> {
     @Column(ColumnName.Ticket.STATUS)
     private String status;
 
+    @Column(ColumnName.Ticket.UID)
+    private String uid;
+
+    @Column(ColumnName.Ticket.UUID)
+    private String uuid;
+
+    @Column(ColumnName.Ticket.USERNAME)
+    private String username;
+
+    @Column(ColumnName.Ticket.USER_ID)
+    private String userId;
+
 }
 

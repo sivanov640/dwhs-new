@@ -49,6 +49,14 @@ public class TicketDto extends CreatedUpdatedDto {
     private String status;
     @JsonProperty(ColumnName.Ticket.GAME_YOUR_BET)
     private String gameYourBet;
+    @JsonProperty(ColumnName.Ticket.UID)
+    private String uid;
+    @JsonProperty(ColumnName.Ticket.UUID)
+    private String uuid;
+    @JsonProperty(ColumnName.Ticket.USERNAME)
+    private String username;
+    @JsonProperty(ColumnName.Ticket.USER_ID)
+    private String userId;
 
 }
 
