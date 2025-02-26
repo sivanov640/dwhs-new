@@ -19,6 +19,10 @@ public class TicketDto extends CreatedUpdatedDto {
     private String gameName;
     @JsonProperty(ColumnName.Ticket.AGENCY_ID)
     private int agencyId;
+    @JsonProperty(ColumnName.Ticket.AGENCY_CODE)
+    private String agencyCode;
+    @JsonProperty(ColumnName.Ticket.AGENCY_CODE2)
+    private String agencyCode2;
     @JsonProperty(ColumnName.Ticket.ROUND_ID)
     private String roundId;
     @JsonProperty(ColumnName.Ticket.TRANSACTION_ID)

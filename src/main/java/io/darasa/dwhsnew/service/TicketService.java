@@ -22,13 +22,22 @@ public class TicketService extends BaseService<Ticket, TicketPrimaryKey, TicketD
         super(Type.TICKET);
     }
 
-    public PageResponse<TicketDto> getAll(int page, int size, String id, String roundId) {
+    public PageResponse<TicketDto> getAll(int page, int size, String id, String roundId, Integer agencyId, String agencyCode, String agencyCode2) {
         List<CriteriaDefinition> criteriaDefinitions = new ArrayList<>();
         if (id != null) {
             criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.TICKET_ID).is(id));
         }
         if (roundId != null) {
             criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.ROUND_ID).is(roundId));
+        }
+        if (agencyId != null) {
+            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_ID).is(agencyId));
+        }
+        if (agencyCode != null) {
+            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE).is(agencyCode));
+        }
+        if (agencyCode2 != null) {
+            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE2).is(agencyCode2));
         }
 
         return getAll(page, size, criteriaDefinitions);

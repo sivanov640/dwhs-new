@@ -30,6 +30,14 @@ public class Ticket extends CreatedUpdatedEntity<TicketPrimaryKey> {
     private int agencyId;
 
     @Indexed
+    @Column(ColumnName.Ticket.AGENCY_CODE)
+    private String agencyCode;
+
+    @Indexed
+    @Column(ColumnName.Ticket.AGENCY_CODE2)
+    private String agencyCode2;
+
+    @Indexed
     @Column(ColumnName.Ticket.ROUND_ID)
     private String roundId;
 

@@ -25,7 +25,10 @@ public class TicketController {
     public PageResponse<TicketDto> getTickets(@RequestParam(defaultValue = "1", required = false) int page,
                                               @RequestParam(defaultValue = "10", required = false) int size,
                                               @RequestParam(required = false, value = ColumnName.Ticket.TICKET_ID) String ticketId,
-                                              @RequestParam(required = false, value = ColumnName.Ticket.ROUND_ID) String roundId) {
-        return ticketService.getAll(page, size, ticketId, roundId);
+                                              @RequestParam(required = false, value = ColumnName.Ticket.ROUND_ID) String roundId,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_ID) Integer agencyId,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_CODE) String agencyCode,
+                                              @RequestParam(required = false, value = ColumnName.Ticket.AGENCY_CODE2) String agencyCode2) {
+        return ticketService.getAll(page, size, ticketId, roundId, agencyId, agencyCode, agencyCode2);
     }
 }

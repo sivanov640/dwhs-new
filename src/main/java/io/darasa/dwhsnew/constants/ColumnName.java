@@ -36,7 +36,8 @@ public class ColumnName {
         public static final String WIN_AMOUNT = "win_amount";
         public static final String GAME_YOUR_BET = "game_your_bet";
         public static final String STATUS = "status";
-
+        public static final String AGENCY_CODE = "agency_code";
+        public static final String AGENCY_CODE2 = "agency_code2";
     }
 
     public static class Transaction {
