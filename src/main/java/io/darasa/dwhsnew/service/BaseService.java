@@ -63,6 +63,9 @@ public abstract class BaseService<T extends BaseEntity, U extends BaseDto> {
         } else if (size < 1) {
             throw new InvalidRequestException("Size must be greater than 0");
         }
+        if (!elasticsearchTemplate.indexOps(type.getEntityClass()).exists()) {
+            return PageResponse.<U>builder().build();
+        }
         if (criterias == null) {
             criterias = new ArrayList<>();
         }
@@ -71,7 +74,6 @@ public abstract class BaseService<T extends BaseEntity, U extends BaseDto> {
 
         // Perform the search with the query and pageable request
         var resultPage = elasticsearchTemplate.search(query, type.getEntityClass());
-
         return PageResponse.<U>builder()
                 .records(resultPage.getSearchHits().stream()
                         .limit(size)

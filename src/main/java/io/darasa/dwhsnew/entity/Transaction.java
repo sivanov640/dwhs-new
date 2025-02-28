@@ -6,22 +6,21 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
-
-import java.util.UUID;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@TypeAlias("transaction")
 @Document(indexName = "transaction")
 public class Transaction extends CreatedUpdatedEntity {
 
-    @Id
-    private final String id = UUID.randomUUID().toString();
+    @Field(ColumnName.Transaction.TRANSACTION_ID)
+    private String transactionId;
 
     @Field(ColumnName.Transaction.REQUEST)
     private String request;
@@ -29,5 +28,9 @@ public class Transaction extends CreatedUpdatedEntity {
     @Field(ColumnName.Transaction.RESPONSE)
     private String response;
 
+    @Override
+    public String getId() {
+        return transactionId;
+    }
 }
 

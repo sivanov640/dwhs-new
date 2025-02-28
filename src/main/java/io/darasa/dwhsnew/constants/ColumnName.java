@@ -49,6 +49,7 @@ public class ColumnName {
     }
 
     public static class Transaction {
+        public static final String TRANSACTION_ID = "transaction_id";
         public static final String REQUEST = "request";
         public static final String RESPONSE = "response";
     }

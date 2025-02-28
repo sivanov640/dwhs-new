@@ -9,4 +9,5 @@ spring:
     username:
     password:
   elasticsearch:
-    uris: http://localhost:9200
+    uris:
+      - http://localhost:9200

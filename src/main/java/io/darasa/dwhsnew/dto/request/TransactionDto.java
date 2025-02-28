@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class TransactionDto extends CreatedUpdatedDto {
 
+    @JsonProperty(ColumnName.Transaction.TRANSACTION_ID)
+    private String transactionId;
     @JsonProperty(ColumnName.Transaction.REQUEST)
     private String request;
     @JsonProperty(ColumnName.Transaction.RESPONSE)
