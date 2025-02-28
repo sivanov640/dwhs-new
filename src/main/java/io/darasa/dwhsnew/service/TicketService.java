@@ -5,10 +5,8 @@ import io.darasa.dwhsnew.constants.Type;
 import io.darasa.dwhsnew.dto.request.TicketDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
 import io.darasa.dwhsnew.entity.Ticket;
-import io.darasa.dwhsnew.entity.TicketPrimaryKey;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.cassandra.core.query.Criteria;
-import org.springframework.data.cassandra.core.query.CriteriaDefinition;
+import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,43 +14,43 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class TicketService extends BaseService<Ticket, TicketPrimaryKey, TicketDto> {
+public class TicketService extends BaseService<Ticket, TicketDto> {
 
     public TicketService() {
         super(Type.TICKET);
     }
 
     public PageResponse<TicketDto> getAll(int page, int size, String id, String roundId, Integer agencyId, String agencyCode, String agencyCode2, String uid, String uuid, String username, String userId) {
-        List<CriteriaDefinition> criteriaDefinitions = new ArrayList<>();
+        List<Criteria> criteriaList = new ArrayList<>();
         if (id != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.TICKET_ID).is(id));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.TICKET_ID).is(id));
         }
         if (roundId != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.ROUND_ID).is(roundId));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.ROUND_ID).is(roundId));
         }
         if (agencyId != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_ID).is(agencyId));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.AGENCY_ID).is(agencyId));
         }
         if (agencyCode != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE).is(agencyCode));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE).is(agencyCode));
         }
         if (agencyCode2 != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE2).is(agencyCode2));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.AGENCY_CODE2).is(agencyCode2));
         }
         if (uid != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.UID).is(uid));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.UID).is(uid));
         }
         if (uuid != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.UUID).is(uuid));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.UUID).is(uuid));
         }
         if (username != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.USERNAME).is(username));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.USERNAME).is(username));
         }
         if (userId != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Ticket.USER_ID).is(userId));
+            criteriaList.add(Criteria.where(ColumnName.Ticket.USER_ID).is(userId));
         }
 
-        return getAll(page, size, criteriaDefinitions);
+        return getAll(page, size, criteriaList);
     }
 
 }

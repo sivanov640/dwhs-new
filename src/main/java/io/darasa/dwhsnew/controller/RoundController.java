@@ -26,11 +26,12 @@ public class RoundController {
     public PageResponse<RoundDto> getRounds(@RequestParam(defaultValue = "1", required = false) int page,
                                             @RequestParam(defaultValue = "10", required = false) int size,
                                             @RequestParam(required = false, value = ColumnName.Round.ROUND_ID) String roundId,
+                                            @RequestParam(required = false, value = ColumnName.Round.GAME_ID) String gameId,
                                             @Parameter(description = "Round start date and time in ISO format (yyyy-MM-ddTHH:mm:ss.SSS±TZ) or interval (yyyy-MM-ddTHH:mm:ss.SSS±TZ_yyyy-MM-ddTHH:mm:ss.SSS±TZ)")
                                             @RequestParam(required = false, value = ColumnName.Round.START_TIME) String startTime,
                                             @Parameter(description = "Round end date and time in ISO format (yyyy-MM-ddTHH:mm:ss.SSS±TZ) or interval (yyyy-MM-ddTHH:mm:ss.SSS±TZ_yyyy-MM-ddTHH:mm:ss.SSS±TZ)")
                                             @RequestParam(required = false, value = ColumnName.Round.END_TIME) String endTime) {
-        return roundService.getAll(page, size, roundId, startTime, endTime);
+        return roundService.getAll(page, size, roundId, gameId, startTime, endTime);
     }
 
 }

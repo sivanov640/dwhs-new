@@ -6,22 +6,28 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
+import java.util.UUID;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table("transaction")
-public class Transaction extends CreatedUpdatedEntity<TransactionPrimaryKey> {
+@Document(indexName = "transaction")
+public class Transaction extends CreatedUpdatedEntity {
 
-    @Column(ColumnName.Transaction.REQUEST_JSON)
-    private String requestJson;
+    @Id
+    private final String id = UUID.randomUUID().toString();
 
-    @Column(ColumnName.Transaction.RESPONSE_JSON)
-    private String responseJson;
+    @Field(ColumnName.Transaction.REQUEST)
+    private String request;
+
+    @Field(ColumnName.Transaction.RESPONSE)
+    private String response;
 
 }
 

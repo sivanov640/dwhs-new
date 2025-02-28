@@ -3,7 +3,6 @@ package io.darasa.dwhsnew.listener;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.darasa.dwhsnew.constants.Type;
-import io.darasa.dwhsnew.dto.request.BaseDto;
 import io.darasa.dwhsnew.exception.InvalidRequestException;
 import io.darasa.dwhsnew.service.BaseService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ public class RecordsQueueListener {
 
     private final ObjectMapper objectMapper;
 
-    private final Map<String, BaseService<?, ?, ? extends BaseDto>> serviceMap;
+    private final Map<String, BaseService<?, ?>> serviceMap;
 
     @RabbitListener(queues = RECORDS_QUEUE)
     public void listen(@Payload String message, @Header String type) {
