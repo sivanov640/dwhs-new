@@ -11,11 +11,14 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class DroppedDto extends BaseDto {
 
-    @JsonProperty(ColumnName.Round.RESULT)
+    @JsonProperty(ColumnName.Dropped.DATA)
     private String data;
 
-    public static DroppedDto of(String data) {
-        return new DroppedDto(data);
+    @JsonProperty(ColumnName.Dropped.TYPE)
+    private String type;
+
+    public static DroppedDto of(String data, String type) {
+        return new DroppedDto(data, type);
     }
 
 }

@@ -5,10 +5,8 @@ import io.darasa.dwhsnew.constants.Type;
 import io.darasa.dwhsnew.dto.request.RoundDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
 import io.darasa.dwhsnew.entity.Round;
-import io.darasa.dwhsnew.entity.RoundPrimaryKey;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.cassandra.core.query.Criteria;
-import org.springframework.data.cassandra.core.query.CriteriaDefinition;
+import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,25 +14,28 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class RoundService extends BaseService<Round, RoundPrimaryKey, RoundDto> {
+public class RoundService extends BaseService<Round, RoundDto> {
 
     public RoundService() {
         super(Type.ROUND);
     }
 
-    public PageResponse<RoundDto> getAll(int page, int size, String id, String startTime, String endTime) {
-        List<CriteriaDefinition> criteriaDefinitions = new ArrayList<>();
+    public PageResponse<RoundDto> getAll(int page, int size, String id, String gameId, String startTime, String endTime) {
+        List<Criteria> criteriaList = new ArrayList<>();
         if (id != null) {
-            criteriaDefinitions.add(Criteria.where(ColumnName.Round.ROUND_ID).is(id));
+            criteriaList.add(Criteria.where(ColumnName.Round.ROUND_ID).is(id));
+        }
+        if (gameId != null) {
+            criteriaList.add(Criteria.where(ColumnName.Round.GAME_ID).is(gameId));
         }
         if (startTime != null) {
-            addCriteriaDefinitionsForDateTime(ColumnName.Round.START_TIME, startTime, criteriaDefinitions);
+            addCriteriaDefinitionsForDateTime(ColumnName.Round.START_TIME, startTime, criteriaList);
         }
         if (endTime != null) {
-            addCriteriaDefinitionsForDateTime(ColumnName.Round.END_TIME, endTime, criteriaDefinitions);
+            addCriteriaDefinitionsForDateTime(ColumnName.Round.END_TIME, endTime, criteriaList);
         }
 
-        return getAll(page, size, criteriaDefinitions);
+        return getAll(page, size, criteriaList);
     }
 
 }

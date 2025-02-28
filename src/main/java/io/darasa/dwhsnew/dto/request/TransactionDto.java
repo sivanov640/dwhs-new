@@ -9,18 +9,12 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class TransactionDto extends CreatedUpdatedDto {
 
-    @JsonProperty(ColumnName.Transaction.GAME_ID)
-    private String gameId;
-    @JsonProperty(ColumnName.Transaction.TICKET_ID)
-    private String ticketId;
-    @JsonProperty(ColumnName.Transaction.AGENCY_ID)
-    private String agencyId;
-    @JsonProperty(ColumnName.Transaction.MEMBER_ID)
-    private String memberId;
-    @JsonProperty(ColumnName.Transaction.REQUEST_JSON)
-    private String requestJson;
-    @JsonProperty(ColumnName.Transaction.RESPONSE_JSON)
-    private String responseJson;
+    @JsonProperty(ColumnName.Transaction.TRANSACTION_ID)
+    private String transactionId;
+    @JsonProperty(ColumnName.Transaction.REQUEST)
+    private String request;
+    @JsonProperty(ColumnName.Transaction.RESPONSE)
+    private String response;
 
 }
 

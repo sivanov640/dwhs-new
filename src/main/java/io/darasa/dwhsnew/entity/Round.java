@@ -6,9 +6,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.Indexed;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.Instant;
 
@@ -17,25 +18,38 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table("round")
-public class Round extends CreatedUpdatedEntity<RoundPrimaryKey> {
+@TypeAlias("round")
+@Document(indexName = "round")
+public class Round extends CreatedUpdatedEntity {
 
-    @Column(ColumnName.Round.TABLE_ID)
+    @Field(name = ColumnName.Round.ROUND_ID)
+    private String roundId;
+
+    @Field(name = ColumnName.Round.GAME_ID)
+    private String gameId;
+
+    @Field(ColumnName.Round.TABLE_ID)
     private String tableId;
 
-    @Column(ColumnName.Round.GAME_NAME)
+    @Field(ColumnName.Round.GAME_NAME)
     private String gameName;
 
-    @Column(ColumnName.Round.RESULT)
+    @Field(ColumnName.Round.RESULT)
     private String result;
 
-    @Indexed
-    @Column(ColumnName.Round.START_TIME)
+    @Field(name = ColumnName.Round.START_TIME, type = FieldType.Date)
     private Instant startTime;
 
-    @Indexed
-    @Column(ColumnName.Round.END_TIME)
+    @Field(name = ColumnName.Round.END_TIME, type = FieldType.Date)
     private Instant endTime;
+
+    @Override
+    public String getId() {
+        if (gameId == null || roundId == null) {
+            return null;
+        }
+        return gameId + '-' + roundId;
+    }
 
 }
 

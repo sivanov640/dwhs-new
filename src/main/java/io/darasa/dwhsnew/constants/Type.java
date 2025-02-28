@@ -17,7 +17,7 @@ public enum Type {
     TICKET(Ticket.class, TicketDto.class),
     DROPPED(Dropped.class, DroppedDto.class);
 
-    private final Class<? extends BaseEntity<?>> entityClass;
+    private final Class<? extends BaseEntity> entityClass;
 
     private final Class<? extends BaseDto> dtoClass;
 

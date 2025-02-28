@@ -7,15 +7,8 @@ spring:
     port: 5672
     username: guest
     password: guest
-  cassandra:
-    contact-points: localhost
-    port: 9042
-    keyspace-name: test_keyspace
-    local-datacenter: datacenter1
-    schema-action: recreate_drop_unused
-    username: cassandra
-    password: cassandra
-    request:
-      timeout: 5s
-    connection:
-      connect-timeout: 10s
+  elasticsearch:
+    uris:
+      - http://localhost:9200
+      - http://localhost:9201
+      - http://localhost:9202

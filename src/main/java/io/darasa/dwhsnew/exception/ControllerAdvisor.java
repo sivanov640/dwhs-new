@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerAdvisor {
 
-    @ExceptionHandler({CassandraException.class})
-    public ResponseEntity<String> handleException(CassandraException exception) {
+    @ExceptionHandler({ElasticsearchException.class})
+    public ResponseEntity<String> handleException(ElasticsearchException exception) {
         return buildErrorResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

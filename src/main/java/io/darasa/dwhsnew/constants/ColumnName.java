@@ -3,6 +3,8 @@ package io.darasa.dwhsnew.constants;
 public class ColumnName {
 
     public static class Base {
+        public static final String _CREATED_AT = "_created_at";
+        public static final String _UPDATED_AT = "_updated_at";
         public static final String CREATED_AT = "created_at";
         public static final String UPDATED_AT = "updated_at";
     }
@@ -42,18 +44,18 @@ public class ColumnName {
         public static final String UUID = "uuid";
         public static final String USERNAME = "username";
         public static final String USER_ID = "user_id";
+        public static final String ROUND_START_TIME = "round_start_time";
+        public static final String ROUND_END_TIME = "round_end_time";
     }
 
     public static class Transaction {
-        public static final String GAME_ID = "game_id";
-        public static final String TICKET_ID = "ticket_id";
-        public static final String AGENCY_ID = "agency_id";
-        public static final String MEMBER_ID = "member_id";
-        public static final String REQUEST_JSON = "request_json";
-        public static final String RESPONSE_JSON = "response_json";
+        public static final String TRANSACTION_ID = "transaction_id";
+        public static final String REQUEST = "request";
+        public static final String RESPONSE = "response";
     }
 
     public static class Dropped {
         public static final String DATA = "data";
+        public static final String TYPE = "type";
     }
 }

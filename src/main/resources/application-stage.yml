@@ -8,13 +8,6 @@ spring:
     port: 5672
     username:
     password:
-  cassandra:
-    contact-points: localhost
-    port: 9042
-    keyspace-name: dwhs_keyspace
-    local-datacenter: datacenter1
-    schema-action: create_if_not_exists
-    request:
-      timeout: 5s
-    connection:
-      connect-timeout: 10s
+  elasticsearch:
+    uris:
+      - http://localhost:9200

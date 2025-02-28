@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.Instant;
 
@@ -15,11 +16,12 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class CreatedUpdatedEntity<T> extends BaseEntity<T> {
+public abstract class CreatedUpdatedEntity extends BaseEntity {
 
-    @Column(ColumnName.Base.CREATED_AT)
+    @Field(name = ColumnName.Base.CREATED_AT, type = FieldType.Date)
     private Instant createdAt;
 
-    @Column(ColumnName.Base.UPDATED_AT)
+    @Field(name = ColumnName.Base.UPDATED_AT, type = FieldType.Date)
     private Instant updatedAt;
+
 }
