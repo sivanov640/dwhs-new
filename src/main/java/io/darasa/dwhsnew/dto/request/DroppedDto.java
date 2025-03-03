@@ -5,6 +5,7 @@ import io.darasa.dwhsnew.constants.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +19,10 @@ public class DroppedDto extends BaseDto {
     private String type;
 
     public static DroppedDto of(String data, String type) {
-        return new DroppedDto(data, type);
+        return new DroppedDto(
+                data == null ? StringUtils.EMPTY : data,
+                type == null ? StringUtils.EMPTY : type
+        );
     }
 
 }

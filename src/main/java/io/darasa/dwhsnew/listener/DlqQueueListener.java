@@ -17,7 +17,7 @@ public class DlqQueueListener {
     private final DroppedService droppedService;
 
     @RabbitListener(queues = DLQ_QUEUE)
-    public void listen(@Payload String message, @Header String type) {
+    public void listen(@Payload(required = false) String message, @Header(required = false) String type) {
         droppedService.save(DroppedDto.of(message, type));
     }
 }
