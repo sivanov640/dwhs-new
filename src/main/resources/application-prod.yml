@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /dwhs
+  port: 4000
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username:
+    password:
+  elasticsearch:
+    uris:
+      - http://192.168.250.22:9200
+      - http://192.168.250.240:9200
+      - http://192.168.250.176:9200
