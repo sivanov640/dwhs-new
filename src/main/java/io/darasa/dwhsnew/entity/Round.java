@@ -43,6 +43,9 @@ public class Round extends CreatedUpdatedEntity {
     @Field(name = ColumnName.Round.END_TIME, type = FieldType.Date)
     private Instant endTime;
 
+    @Field(ColumnName.Round.NUMBER)
+    private Integer number;
+
     @Override
     public String getId() {
         if (gameId == null || roundId == null) {

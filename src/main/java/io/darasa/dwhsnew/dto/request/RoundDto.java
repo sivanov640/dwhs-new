@@ -24,4 +24,6 @@ public class RoundDto extends CreatedUpdatedDto {
     private Instant startTime;
     @JsonProperty(ColumnName.Round.END_TIME)
     private Instant endTime;
+    @JsonProperty(ColumnName.Round.NUMBER)
+    private Integer number;
 }

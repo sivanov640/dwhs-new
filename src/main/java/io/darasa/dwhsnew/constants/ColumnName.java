@@ -17,6 +17,7 @@ public class ColumnName {
         public static final String RESULT = "result";
         public static final String START_TIME = "start_time";
         public static final String END_TIME = "end_time";
+        public static final String NUMBER = "number";
     }
 
     public static class Ticket {
@@ -46,6 +47,7 @@ public class ColumnName {
         public static final String USER_ID = "user_id";
         public static final String ROUND_START_TIME = "round_start_time";
         public static final String ROUND_END_TIME = "round_end_time";
+        public static final String ROUND_NUMBER = "round_number";
     }
 
     public static class Transaction {

@@ -101,6 +101,9 @@ public class Ticket extends CreatedUpdatedEntity {
     @Field(name = ColumnName.Ticket.ROUND_END_TIME, type = FieldType.Date)
     private Instant roundEndTime;
 
+    @Field(ColumnName.Ticket.ROUND_NUMBER)
+    private Integer roundNumber;
+
     @Override
     public String getId() {
         if (gameId == null || roundId == null) {
