@@ -62,7 +62,7 @@ public class TicketDto extends CreatedUpdatedDto {
     @JsonProperty(ColumnName.Ticket.ROUND_END_TIME)
     private String roundEndTime;
     @JsonProperty(ColumnName.Ticket.ROUND_NUMBER)
-    private String roundNumber;
+    private Integer roundNumber;
 
 }
 
