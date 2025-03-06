@@ -102,7 +102,7 @@ public class Ticket extends CreatedUpdatedEntity {
     private Instant roundEndTime;
 
     @Field(ColumnName.Ticket.ROUND_NUMBER)
-    private Integer roundNumber;
+    private String roundNumber;
 
     @Override
     public String getId() {

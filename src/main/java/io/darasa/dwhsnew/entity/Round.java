@@ -44,7 +44,7 @@ public class Round extends CreatedUpdatedEntity {
     private Instant endTime;
 
     @Field(ColumnName.Round.NUMBER)
-    private Integer number;
+    private String number;
 
     @Override
     public String getId() {
