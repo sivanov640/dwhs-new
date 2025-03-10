@@ -144,7 +144,8 @@ public abstract class BaseService {
         if (expectedType == Integer.class || expectedType == int.class) return field.isInt();
         if (expectedType == Boolean.class || expectedType == boolean.class) return field.isBoolean();
         if (expectedType == Double.class || expectedType == double.class) return field.isDouble();
-        if (expectedType == Long.class || expectedType == long.class) return field.isLong();
+        if (expectedType == Long.class || expectedType == long.class)
+            return field.isNumber() && (field.isInt() || field.isLong());
         if (expectedType == Instant.class) {
             if (field.isTextual()) {
                 try {
