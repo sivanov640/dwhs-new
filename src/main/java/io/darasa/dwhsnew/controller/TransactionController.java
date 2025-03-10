@@ -2,6 +2,7 @@ package io.darasa.dwhsnew.controller;
 
 import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.dto.response.PageResponse;
+import io.darasa.dwhsnew.entity.mapped.BaseMap;
 import io.darasa.dwhsnew.entity.mapped.Transaction;
 import io.darasa.dwhsnew.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,10 +35,10 @@ public class TransactionController {
         return transactionService.getAll(page, size, request, response);
     }
 
-    @GetMapping("/mapping")
-    @Operation(summary = "Get transaction mapping")
-    public Map<String, Class<?>> getMapping() {
-        return Transaction.fieldMap;
+    @GetMapping("/schema")
+    @Operation(summary = "Get transaction schema")
+    public Map<String, Object> getSchema() {
+        return BaseMap.getExample(Transaction.fieldMap, Transaction.id);
     }
 
 }

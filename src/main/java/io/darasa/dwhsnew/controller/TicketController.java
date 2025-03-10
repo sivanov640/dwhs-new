@@ -2,6 +2,7 @@ package io.darasa.dwhsnew.controller;
 
 import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.dto.response.PageResponse;
+import io.darasa.dwhsnew.entity.mapped.BaseMap;
 import io.darasa.dwhsnew.entity.mapped.Ticket;
 import io.darasa.dwhsnew.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,9 +40,9 @@ public class TicketController {
         return ticketService.getAll(page, size, ticketId, roundId, agencyId, agencyCode, agencyCode2, uid, uuid, username, userId);
     }
 
-    @GetMapping("/mapping")
-    @Operation(summary = "Get ticket mapping")
-    public Map<String, Class<?>> getMapping() {
-        return Ticket.fieldMap;
+    @GetMapping("/schema")
+    @Operation(summary = "Get ticket schema")
+    public Map<String, Object> getSchema() {
+        return BaseMap.getExample(Ticket.fieldMap, Ticket.id);
     }
 }

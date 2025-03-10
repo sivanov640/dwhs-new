@@ -2,6 +2,7 @@ package io.darasa.dwhsnew.controller;
 
 import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.dto.response.PageResponse;
+import io.darasa.dwhsnew.entity.mapped.BaseMap;
 import io.darasa.dwhsnew.entity.mapped.Round;
 import io.darasa.dwhsnew.service.RoundService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,10 +37,10 @@ public class RoundController {
         return roundService.getAll(page, size, roundId, gameId, startTime, endTime);
     }
 
-    @GetMapping("/mapping")
-    @Operation(summary = "Get round mapping")
-    public Map<String, Class<?>> getMapping() {
-        return Round.fieldMap;
+    @GetMapping("/schema")
+    @Operation(summary = "Get round schema")
+    public Map<String, Object> getSchema() {
+        return BaseMap.getExample(Round.fieldMap, Round.id);
     }
 
 }

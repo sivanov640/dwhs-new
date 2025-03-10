@@ -10,17 +10,17 @@ public class Round extends BaseMap {
 
     public final static String index = "round";
 
-    public final static Map<String, Class<?>> fieldMap = Map.of(
-            ColumnName.Base.CREATED_AT, Instant.class,
-            ColumnName.Base.UPDATED_AT, Instant.class,
-            ColumnName.Round.ROUND_ID, String.class,
-            ColumnName.Round.TABLE_ID, String.class,
-            ColumnName.Round.GAME_ID, String.class,
-            ColumnName.Round.GAME_NAME, String.class,
-            ColumnName.Round.RESULT, String.class,
-            ColumnName.Round.START_TIME, Instant.class,
-            ColumnName.Round.END_TIME, Instant.class,
-            ColumnName.Round.NUMBER, Integer.class
+    public final static Map<String, Class<?>> fieldMap = Map.ofEntries(
+            Map.entry(ColumnName.Base.CREATED_AT, Instant.class),
+            Map.entry(ColumnName.Base.UPDATED_AT, Instant.class),
+            Map.entry(ColumnName.Round.ROUND_ID, String.class),
+            Map.entry(ColumnName.Round.TABLE_ID, String.class),
+            Map.entry(ColumnName.Round.GAME_ID, String.class),
+            Map.entry(ColumnName.Round.GAME_NAME, String.class),
+            Map.entry(ColumnName.Round.RESULT, String.class),
+            Map.entry(ColumnName.Round.START_TIME, Instant.class),
+            Map.entry(ColumnName.Round.END_TIME, Instant.class),
+            Map.entry(ColumnName.Round.NUMBER, Integer.class)
     );
 
     public final static List<String> id = List.of(
