@@ -2,9 +2,7 @@ package io.darasa.dwhsnew.service;
 
 import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.constants.Type;
-import io.darasa.dwhsnew.dto.request.RoundDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
-import io.darasa.dwhsnew.entity.Round;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.stereotype.Service;
@@ -14,13 +12,13 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class RoundService extends BaseService<Round, RoundDto> {
+public class RoundService extends BaseService {
 
     public RoundService() {
         super(Type.ROUND);
     }
 
-    public PageResponse<RoundDto> getAll(int page, int size, String id, String gameId, String startTime, String endTime) {
+    public PageResponse getAll(int page, int size, String id, String gameId, String startTime, String endTime) {
         List<Criteria> criteriaList = new ArrayList<>();
         if (id != null) {
             criteriaList.add(Criteria.where(ColumnName.Round.ROUND_ID).is(id));

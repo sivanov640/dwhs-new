@@ -7,14 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageResponse<T> {
+public class PageResponse {
     @Builder.Default
-    private List<T> records = new ArrayList<>();
+    private List<Map<String, Object>> records = new ArrayList<>();
     @Builder.Default
     private boolean hasNext = false;
     @Builder.Default

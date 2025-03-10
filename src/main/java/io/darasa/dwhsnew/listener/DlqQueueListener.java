@@ -1,6 +1,5 @@
 package io.darasa.dwhsnew.listener;
 
-import io.darasa.dwhsnew.dto.request.DroppedDto;
 import io.darasa.dwhsnew.service.DroppedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,6 +17,6 @@ public class DlqQueueListener {
 
     @RabbitListener(queues = DLQ_QUEUE)
     public void listen(@Payload(required = false) String message, @Header(required = false) String type) {
-        droppedService.save(DroppedDto.of(message, type));
+        droppedService.save(message, type);
     }
 }

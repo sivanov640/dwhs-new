@@ -2,9 +2,7 @@ package io.darasa.dwhsnew.service;
 
 import io.darasa.dwhsnew.constants.ColumnName;
 import io.darasa.dwhsnew.constants.Type;
-import io.darasa.dwhsnew.dto.request.TicketDto;
 import io.darasa.dwhsnew.dto.response.PageResponse;
-import io.darasa.dwhsnew.entity.Ticket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.stereotype.Service;
@@ -14,13 +12,13 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class TicketService extends BaseService<Ticket, TicketDto> {
+public class TicketService extends BaseService {
 
     public TicketService() {
         super(Type.TICKET);
     }
 
-    public PageResponse<TicketDto> getAll(int page, int size, String id, String roundId, Integer agencyId, String agencyCode, String agencyCode2, String uid, String uuid, String username, String userId) {
+    public PageResponse getAll(int page, int size, String id, String roundId, Integer agencyId, String agencyCode, String agencyCode2, String uid, String uuid, String username, String userId) {
         List<Criteria> criteriaList = new ArrayList<>();
         if (id != null) {
             criteriaList.add(Criteria.where(ColumnName.Ticket.TICKET_ID).is(id));

@@ -45,9 +45,6 @@ public class ColumnName {
         public static final String UUID = "uuid";
         public static final String USERNAME = "username";
         public static final String USER_ID = "user_id";
-        public static final String ROUND_START_TIME = "round_start_time";
-        public static final String ROUND_END_TIME = "round_end_time";
-        public static final String ROUND_NUMBER = "round_number";
     }
 
     public static class Transaction {
